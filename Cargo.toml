@@ -1,0 +1,15 @@
+[package]
+name = "opensbi-rt"
+version = "0.1.0"
+edition = "2021"
+authors = ["PinYu1618 <pycc1618@gmail.com>"]
+repository = "https://github.com/pinyu1618/opensbi-rt"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[example]]
+name = "empty"
+path = "examples/empty/empty.rs"
+
+[dependencies]
+opensbi-rt-macros = { path = "macros", version = "0.1.0" }

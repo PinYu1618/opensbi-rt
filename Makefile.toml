@@ -1,0 +1,33 @@
+[env]
+
+[tasks.opensbi]
+command = "cargo"
+args = ["build"]
+
+[tasks.build]
+command = "cargo"
+args = ["build", "--example", "empty", "--target", "riscv64imac-unknown-none-elf"]
+
+[tasks.run]
+command = "~/qemu-5.0.0/riscv64-softmmu/qemu-system-riscv64"
+args = [
+    "-machine", "virt",
+    "-smp", "8",
+    "-bios", "default",
+    "-device", "loader,file=target/riscv64imac-unknown-none-elf/debug/examples/empty.bin,addr=0x80200000",
+]
+dependencies = ["build", "objcopy"]
+
+[tasks.objcopy]
+command = "rust-objcopy"
+args = [
+    "--binary-architecture=riscv64",
+    "./target/riscv64imac-unknown-none-elf/debug/examples/empty",
+    "--strip-all",
+    "-O", "binary",
+    "./target/riscv64imac-unknown-none-elf/debug/examples/empty.bin"
+]
+dependencies = ["build"]
+
+[tasks.hello]
+script = "echo hello world"

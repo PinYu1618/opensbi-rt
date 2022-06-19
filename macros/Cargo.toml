@@ -1,0 +1,20 @@
+[package]
+name = "opensbi-rt-macros"
+version = "0.1.0"
+authors = ["PinYu1618 <pycc1618@gmail.com>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1.0"
+quote = "1.0"
+syn = { version = "1.0", features = ["extra-traits", "full"] }
+
+[dependencies.rand]
+version = "0.7"
+default-features = false
+features = ["small_rng"]
